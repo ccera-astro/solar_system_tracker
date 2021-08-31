@@ -1,0 +1,104 @@
+This is a collection of files in xephem database format. Included here are
+asteroids, comets, stars, deep-sky objects, earth satellites and spacecraft.
+Work on the databases is a major project in itself. There are bound to be
+errors. Authoritative contributions welcome.
+
+The sample XEphem.ad resource settings assume the database files are in this
+directory. For reference, the relevant resource is: XEphem.DBdirectory: edb
+
+
+
+YBS.edb are all of the entries in the Yale Bright Star Catalog which have
+a Bayer and/or a Flamsteed number. A few with common names have been renamed.
+Contact the author if you would like the remaining stars (ecdowney@noao.edu).
+
+Messier.edb is the Messier catalog.
+
+Asteroids are in asteroids.edb. They are named with their sequence number
+followed by their common name, if one has been assigned. The list goes to
+6160.
+
+Deep-sky entries from the Saguaro Astronomy Club database Version 6.0 are
+in SAC.edb. The NGC objects have been pulled out and put into NGC.edb. The
+Messier objects have been commented out and moved into the messier.edb. Some
+objects in the SAC database do not have well-accepted magnitudes.  These
+entries are included but have special magnitude values of 99.9 or 79.9;
+99.9 means no magnitude was available and 79.9 applies to dark nebulae.
+NGC 666, 916 and 4192A/B are from NSSDC Catalog 7001B.
+
+Orbital elements for several spacecraft are in spacecraft.edb.
+
+Several comets are in comets.edb and comets2.edb.
+
+A few old sets of Shuttle elements are in shuttle.edb just to serve as a
+handy example for an earth satellite to try out.
+
+VLA radio calibrator sources for several wavelength bands are in vla*.edb.
+
+Finally, I have the entire SAO database from NSSDC broken down into 10
+files in ephem format. There are a total of 258,997 entries. The complete
+set is 11,332,256 bytes, 3,034,691 compressed. Look on iraf.noao.edu in
+contrib/xephem/SAO.
+
+The xephem database format remains compatible with ephem v4.28 EXCEPT that
+ephem requires entries to start with an alpha character. Either add one to
+all such entries in this db or modify the function nxt_db() to allow a
+leading digit as well (isn't having source nice?). And, of course, ephem
+does not support the earth satellite object type, E. In general, see the
+Help for Objects/Data Base for a full description of the xephem database
+file format. A summary is repeated here for convenience.
+
+Format summary:
+
+  name,type, then as follows:
+ 
+  fixed format:
+     RA, hours
+     Declination, degrees
+     magnitude
+     reference epoch, optional, assumed to be 2000 if absent
+     s = angular size, arc seconds, optional
+ 
+  elliptical format (e < 1):
+     i = inclination, degrees
+     O = longitude of ascending node, degrees
+     o = argument of perihelion, degrees
+     a = mean distance (aka semi-major axis), AU
+     n = mean daily motion, degrees per day (computed from a**3/2 if omitted)
+     e = eccentricity,
+     M = mean anomaly (ie, degrees from perihelion),
+     E = epoch date (ie, time of M),
+     D = the equinox year (ie, time of i/O/o).
+     g/k or H/G = magnitude model; select which by preceding the first field
+ 
+  hyperbolic format (e > 1):
+     T = epoch of perihelion
+     i = inclination, degrees
+     O = longitude of ascending node, degrees
+     o = argument of perihelion, degrees
+     e = eccentricity,
+     q = perihelion distance, AU
+     D = the equinox year (ie, time of i/O/o).
+     g/k = magnitude model
+     s = angular size at 1 AU, arc seconds, optional
+ 
+  parabolic format (e == 1):
+     T = epoch of perihelion
+     i = inclination, degrees
+     o = argument of perihelion, degrees
+     q = perihelion distance, AU
+     O = longitude of ascending node, degrees
+     D = the equinox year (ie, time of i/O/o).
+     g/k = magnitude model
+     s = angular size at 1 AU, arc seconds, optional
+ 
+  Earth satellite format:
+     Epoch
+     inclination, degrees
+     RA of ascending node, degrees
+     eccentricity, must be < 1
+     argument of perigee, degrees
+     mean anomaly, degrees
+     mean motion, revolutions/day
+     orbit decay rate, revolutions/day^2
+     integral reference orbit number at Epoch
