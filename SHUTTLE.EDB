@@ -1,0 +1,10 @@
+# sample shuttle element sets.
+# converted from NASA "2-line" format using tle2edb.awk.
+
+# prelaunch elements for shuttle flight STS-58
+STS-58-4,E,1/280.67747791/1993,39.0114,117.7673,0.0007676,272.4217,87.5676,15.96123499,.00119475,2
+# prelaunch elements for shuttle flight STS-60
+STS-60-3,E,1/027.57034131/1994, 57.0033,209.9640,0.0010675,264.1500, 95.8328,15.72291901, .00033600,2
+
+# elements of mir and atlantis when they were docked in early July, 1995.
+Mir/Atlantis,E,1/184.69436343/1995, 51.6450, 75.0641,0.000308,169.5298,190.5765,15.57164450, .00073094,92
