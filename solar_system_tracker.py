@@ -95,7 +95,7 @@ elif (args.satellite == True):
 #
 # Astroquery objects
 #
-elif (args.astro_major == True or args.astro_small == True):
+elif (astro == True and args.astro_major == True or args.astro_small == True):
     start = time.gmtime(time.time())
     stop = time.gmtime(time.time()+86400.0)
     beg = "%04d-%02d-%02d" % (start.tm_year, start.tm_mon, start.tm_mday)
